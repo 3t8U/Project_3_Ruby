@@ -1,0 +1,42 @@
+Last week, you did a volunteer project for a non-profit. While working on the project, you met the non-profit's IT manager. He's building an internal website to track volunteers working on projects and he'd like your help. Each project should have many volunteers, but a volunteer can only work on one project at a time (a one-to-many relationship). The IT manager has a great deal of experience with SQL so he prefers using SQL for database queries. Fortunately, you know how to integrate raw SQL queries into your application!
+
+The IT manager also believes in testing so he's written the tests himself. You can find the tests here. All tests must be passing. To get one test passing at a time (as usual, you should commit for each passing test), it's recommended to comment out tests you don't need until you're ready to run them.
+
+You may alter a unit test only if you are adding more attributes to volunteers or projects.
+You may (and should) add more unit tests if you decide to add additional features or if there are any methods that aren't covered by the included tests.
+You may alter the names of buttons and fields in the Capybara tests. You may also add additional tests. However, your integration specs should otherwise use the current provided tests unaltered.
+If there is an error or bug in any of the tests, you may correct that error.
+Volunteer Tracker
+Create an application that tracks projects and the volunteers working on them. Each volunteer will belong to only one project (one project, many volunteers).
+
+The following user stories should be completed:
+
+As a non-profit employee, I want to view, add, update and delete projects.
+As a non-profit employee, I want to view and add volunteers.
+As a non-profit employee, I want to add volunteers to a project.
+Additional Requirements
+Please do not specify a Ruby version in your Gemfile. It makes it more difficult to review projects.
+
+For this code review, please use the following names for your databases:
+
+Production Database: volunteer_tracker
+Development Database: volunteer_tracker_test
+Resource names will be projects and volunteers <br><br>
+When you are ready to submit your project, you must run the following bash command while you are in the root directory of your project:
+
+$ pg_dump volunteer_tracker > database_backup.sql
+This will create a database dump called database_backup.sql in your project's root directory. volunteer_tracker is the name of the database being dumped. Before you submit, confirm that the root directory of your repository contains database_backup.sql. We will not review your code if this isn't properly set up.
+
+Your README should also include any important instructions for setting up and using your project! You may want to review our lesson on READMEs.
+
+Objectives
+Your code will be reviewed for the following objectives:
+
+Tests are 100% passing. You may not significantly alter the included tests but you may add additional tests as necessary.
+Database is set up correctly.
+Correct set up of a one-to-many relationship.
+Sinatra has required CRUD functionality.
+Project has strong commit history history.
+Project has detailed README with all necessary setup instructions and a description of the project.
+Required functionality was in place by the Friday deadline.
+Student can demonstrate understanding of Ruby concepts if asked.

@@ -1,4 +1,4 @@
-# _¡WORD UP!_
+# _¡Database'd!_
 
 #### _This is an application that stores words and their definitions_
 
