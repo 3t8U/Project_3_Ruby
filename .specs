@@ -40,3 +40,18 @@ Project has strong commit history history.
 Project has detailed README with all necessary setup instructions and a description of the project.
 Required functionality was in place by the Friday deadline.
 Student can demonstrate understanding of Ruby concepts if asked.
+
+
+
+
+        ! ! ! ! !MAPS! ! ! ! !
+
+             = DATABASE(s) =
+
+             volunteer_tracker
+             volunteer_tracker_test
+             == tables ==
+
+              projects (title ,serial id)
+              volunteers (name, serial id)
+              projects_volunteers (project_id, volunteer_id, serial id)
