@@ -9,6 +9,7 @@ class Volunteer
 
   def ==(volunteer_to_compare)
     @id == volunteer_to_compare.id && @name == volunteer_to_compare.name
+
   end
 
   def self.clean(string)

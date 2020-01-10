@@ -84,14 +84,16 @@ class Project
   end
 
   def volunteers
-    results = DB.exec("SELECT * FROM projects_volunteers WHERE project_id = #{@id}")
+    results = DB.exec("SELECT * FROM projects_volunteers WHERE project_id = #{id}")
     id_string = results.map{ |result| result.fetch("volunteer_id")}.join(', ')
     (id_string != '') ?
       Volunteer.get_volunteers("SELECT * FROM volunteers WHERE id IN (#{id_string});") :
       nil
   end
 
-
+  def Project.id
+  
+  end
 
 
 
