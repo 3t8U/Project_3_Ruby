@@ -75,7 +75,7 @@ class Volunteer
     ")
   end
 
-  def projects
+  def project_id
     results = DB.exec("SELECT * FROM projects_volunteers WHERE volunteer_id = #{@id}")
     id_string = results.map{ |result| result.fetch("project_id")}.join(', ')
     (id_string != '') ?
