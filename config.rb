@@ -1,7 +1,7 @@
 TEST_DB_PARAMS = {
-  :dbname => 'library_test',
+  :dbname => 'volunteer_tracker_test',
 }
 
 DB_PARAMS = {
-  :dbname => 'library',
+  :dbname => 'volunteer_tracker',
 }
