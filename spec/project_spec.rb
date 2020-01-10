@@ -20,7 +20,8 @@ describe Project do
       expect(project.id).to be_an_instance_of Integer
     end
   end
-  sdfasdfsdfsdfs
+
+  sklfhsdkfhsdgklvksdnf;DKn
 
   describe '#==' do
     it 'is the same project if two projects have the same title' do
