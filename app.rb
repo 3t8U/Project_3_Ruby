@@ -58,12 +58,12 @@ post ('/volunteers') do
   redirect to('/volunteers')
 end
 
-post('/projects/search') do
-  name = params[:name]
-  @query = "#{(name != '') ? ('Name: ' + name) : ? (((name != '') ? ', ' : '') ''}"
-  @projects = Project.search({:name => name})
-  erb(:search)
-end
+# post('/projects/search') do
+#   name = params[:name]
+#   @query = "#{(name != '') ? ('Name: ' + name) : ? (((name != '') ? ', ' : '') ''}"
+#   @projects = Project.search({:name => name})
+#   erb(:search)
+# end
 
 get ('/projects/:id') do
   @project = Project.find(params[:id].to_i())
@@ -85,20 +85,20 @@ get ('/volunteers/:id/edit') do
   erb(:edit_volunteer)
 end
 
-patch ('/projects/:id') do
-  @project = Project.find(params[:id].to_i())
-  @project.update({:name => params[:name]})
-  new_volunteer = params[:volunteer_name]
-  if (new_volunteer != "")
-    volunteer = Volunteer.new({
-      :id => nil,
-      :name => "#{new_volunteer}"
-    })
-    volunteer.save()
-    @project.add_volunteer(volunteer.name)
-  end
-  redirect to("/projects/#{params[:id]}")
-end
+# patch ('/projects/:id') do
+#   @project = Project.find(params[:id].to_i())
+#   @project.update({:name => params[:name]})
+#   new_volunteer = params[:volunteer_name]
+#   if (new_volunteer != "")
+#     volunteer = Volunteer.new({
+#       :id => nil,
+#       :name => "#{new_volunteer}"
+#     })
+#     volunteer.save()
+#     @project.add_volunteer(volunteer.name)
+#   end
+#   redirect to("/projects/#{params[:id]}")
+# end
 
 patch ('/volunteers/:id') do
   @volunteer = Volunteer.find(params[:id].to_i())
