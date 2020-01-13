@@ -68,8 +68,7 @@ class Project
       volunteer.save()
       result = [volunteer]
     end
-    DB.exec("
-      INSERT INTO projects_volunteers (volunteer_id, project_id)VALUES (#{result.first().id}, #{@id})")
+    DB.exec("INSERT INTO projects_volunteers (volunteer_id, project_id)VALUE (#{result.first().id}#{@id})")
   end
 
   def volunteers
