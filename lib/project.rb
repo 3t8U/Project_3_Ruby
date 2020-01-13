@@ -16,11 +16,8 @@ class Project
   end
 
   def save
-    result = DB.exec("
-      INSERT INTO projects (title)
-      VALUES ('#{Project.clean(@title)}') RETURNING id;
-    ")
-    @id = result.first().fetch('id').to_i
+    result = DB.exec("INSERT INTO projects (title) VALUES ('#{Project.clean(@title)}') RETURNING id;")
+    @id = result.first().fetch("id").to_i
   end
 
   def self.get_projects(db_query)
@@ -49,10 +46,7 @@ class Project
 
   def self.search(search)
     search.fetch(:title) != ''
-      Project.get_projects("
-        SELECT * FROM projects
-        WHERE lower(title) LIKE '%#{self.clean(search.fetch(:title).downcase)}%';
-      ")
+      Project.get_projects(" SELECT * FROM projects WHERE lower(title) LIKE '%#{self.clean(search.fetch(:title).downcase)}%'")
     end
 
   def update(attributes)
@@ -60,15 +54,12 @@ class Project
       attributes.fetch(:title) :
       @title
     DB.exec("
-      UPDATE projects SET title = '#{Project.clean(@title)}'
-      WHERE id = #{@id};
-    ")
+      UPDATE projects SET title = '#{Project.clean(@title)}'WHERE id = #{@id};")
   end
 
   def add_volunteer(title)
     result = Volunteer.get_volunteers("
-      SELECT * FROM volunteers WHERE title = '#{Project.clean(title)}'
-    ")
+      SELECT * FROM volunteers WHERE title = '#{Project.clean(title)}'")
     if(result.length <1)
       volunteer = Volunteer.new({
         :id => nil,
@@ -78,9 +69,7 @@ class Project
       result = [volunteer]
     end
     DB.exec("
-      INSERT INTO projects_volunteers (volunteer_id, project_id)
-      VALUES (#{result.first().id}, #{@id})
-    ")
+      INSERT INTO projects_volunteers (volunteer_id, project_id)VALUES (#{result.first().id}, #{@id})")
   end
 
   def volunteers
@@ -91,10 +80,8 @@ class Project
       nil
   end
 
-  def Project.id
-  
-  end
-
-
+  # def Project.id
+  #
+  # end
 
 end

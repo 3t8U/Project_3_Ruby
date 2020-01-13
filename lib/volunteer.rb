@@ -18,9 +18,7 @@ class Volunteer
 
   def save
     result = DB.exec("
-      INSERT INTO volunteers (name)
-      VALUES ('#{Volunteer.clean(@name)}') RETURNING id;
-    ")
+      INSERT INTO volunteers (name) VALUES ('#{Volunteer.clean(@name)}') RETURNING id;")
     @id = result.first().fetch('id').to_i
   end
 
@@ -59,8 +57,7 @@ class Volunteer
 
   def add_project(name)
     result = Project.get_projects("
-      SELECT * FROM projects WHERE name = '#{Volunteer.clean(name)}'
-    ")
+      SELECT * FROM projects WHERE name = '#{Volunteer.clean(name)}'")
     if(result.length <1)
       project = Project.new({
         :id => nil,
@@ -71,13 +68,11 @@ class Volunteer
       result = [project]
     end
     DB.exec("
-      INSERT INTO projects_volunteers (project_id, volunteer_id)
-      VALUES (#{result.first().id}, #{@id})
-    ")
+      INSERT INTO projects_volunteers (project_id, volunteer_id) VALUES (#{result.first().id}, #{@id})")
   end
 
   def project_id
-    results = DB.exec("SELECT * FROM projects_volunteers WHERE volunteer_id = #{@id}")
+    results = DB.exec("SELECT * FROM projects_volunteers WHERE volunteer_id = #{@id};")
     id_string = results.map{ |result| result.fetch("project_id")}.join(', ')
     (id_string != '') ?
       Project.get_projects("SELECT * FROM projects WHERE id IN (#{id_string});") :

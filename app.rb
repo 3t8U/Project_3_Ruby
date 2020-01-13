@@ -10,7 +10,7 @@ require './config'
 DB = PG.connect(DB_PARAMS)
 
 get('/') do
-  erb(:home)
+  erb(:projects)
 end
 
 get('/purge') do
@@ -18,7 +18,6 @@ get('/purge') do
   # DB.exec("ALTER SEQUENCE projects_id_sequence RESTART WITH 1;")
   DB.exec("DELETE FROM volunteers *;")
   # DB.exec("ALTER SEQUENCE volunteers_id_sequence RESTART WITH 1;")
-
   redirect to('/projects')
 end
 
