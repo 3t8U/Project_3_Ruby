@@ -10,7 +10,7 @@ require './config'
 DB = PG.connect(DB_PARAMS)
 
 get('/') do
-  erb(:projects)
+  redirect to('/projects')
 end
 
 get('/purge') do
@@ -42,7 +42,7 @@ end
 post ('/projects') do
   name = params[:project_name]
   volunteer = params[:volunteer]
-  project = Project.new({:name => name, :id => nil})
+  project = Project.new({:title => title, :id => nil})
   project.save()
   if volunteer != ''
     project.add_volunteer(volunteer)

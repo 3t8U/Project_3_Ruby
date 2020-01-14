@@ -5,6 +5,7 @@ class Volunteer
   def initialize(attributes)
     @name = attributes.fetch(:name)
     @id = attributes.fetch(:id)
+    # @project_id = attributes.fetch(:project_id)
   end
 
   def ==(volunteer_to_compare)
@@ -72,7 +73,7 @@ class Volunteer
   end
 
   def project_id
-    results = DB.exec("SELECT * FROM projects_volunteers WHERE volunteer_id = #{@id};")
+    results = DB.exec("SELECT * FROM projects_volunteers WHERE volunteer_id = #{@project_id};")
     id_string = results.map{ |result| result.fetch("project_id")}.join(', ')
     (id_string != '') ?
       Project.get_projects("SELECT * FROM projects WHERE id IN (#{id_string});") :
