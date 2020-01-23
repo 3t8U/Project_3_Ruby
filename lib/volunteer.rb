@@ -40,7 +40,7 @@ class Volunteer
 
   def delete
     DB.exec("DELETE FROM volunteers WHERE id = #{@id};")
-    DB.exec("DELETE FROM projects_volunteers WHERE volunteer_id = #{@id};")
+    DB.exec("DELETE FROM volunteers WHERE volunteer_id = #{@id};")
   end
 
   def self.find(id)
@@ -58,7 +58,7 @@ class Volunteer
 
   def add_project(name)
     result = Project.get_projects("
-      SELECT * FROM projects WHERE name = '#{Volunteer.clean(name)}'")
+      SELECT * FROM volunteers WHERE name = '#{Volunteer.clean(name)}'")
     if(result.length <1)
       project = Project.new({
         :id => nil,
@@ -69,11 +69,11 @@ class Volunteer
       result = [project]
     end
     DB.exec("
-      INSERT INTO projects_volunteers (project_id, volunteer_id) VALUES (#{result.first().id}, #{@id})")
+      INSERT INTO volunteers (project_id, volunteer_id) VALUES (#{result.first().id}, #{@id})")
   end
 
   def project_id
-    results = DB.exec("SELECT * FROM projects_volunteers WHERE volunteer_id = #{@project_id};")
+    results = DB.exec("SELECT * FROM volunteers WHERE volunteer_id = #{@project_id};")
     id_string = results.map{ |result| result.fetch("project_id")}.join(', ')
     (id_string != '') ?
       Project.get_projects("SELECT * FROM projects WHERE id IN (#{id_string});") :

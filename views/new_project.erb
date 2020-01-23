@@ -1,12 +1,15 @@
 <h1>¡NEW_PRØJEÇT!</h1>
 <form action="/projects" method="post">
   <div class="form-group">
-    <label for="project_title">Project Title</label>
+    <label for="project_title">Title</label>
     <input id="n" name="project_title" class="form-control" type="text">
     <label for="volunteer">Volunteer Name</label>
     <input id="n" name="volunteer" class="form-control" type="text">
   </div>
   <button type="submit" class="btn">Create Project</button>
+</form>
+<form action="/projects/<%= @project.id %>/edit" method="get">
+  <button type="submit" class="btn">Edit Project</button>
 </form>
 <a href="/projects">Cancel Project</a>
 

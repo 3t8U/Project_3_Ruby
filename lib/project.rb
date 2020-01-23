@@ -37,7 +37,7 @@ class Project
 
   def delete
     DB.exec("DELETE FROM projects WHERE id = #{@id};")
-    DB.exec("DELETE FROM projects_volunteers WHERE project_id = #{@id};")
+    DB.exec("DELETE FROM volunteers WHERE project_id = #{@id};")
   end
 
   def self.find(id)
@@ -68,11 +68,11 @@ class Project
       volunteer.save()
       result = [volunteer]
     end
-    DB.exec("INSERT INTO projects_volunteers (volunteer_id, project_id)VALUE (#{result.first().id}#{@id})")
+    DB.exec("INSERT INTO volunteers (volunteer_id, project_id)VALUE (#{result.first().id}#{@id})")
   end
 
   def volunteers
-    results = DB.exec("SELECT * FROM projects_volunteers WHERE project_id = #{id}")
+    results = DB.exec("SELECT * FROM volunteers WHERE project_id = #{id}")
     id_string = results.map{ |result| result.fetch("volunteer_id")}.join(', ')
     (id_string != '') ?
       Volunteer.get_volunteers("SELECT * FROM volunteers WHERE id IN (#{id_string});") :

@@ -24,7 +24,9 @@
   </div>
   <button type="submit" class="btn">Search</button>
 </form>
-
+<form action="/projects/<%= @project.id %>/edit" method="get">
+  <button type="submit" class="btn">Edit Project</button>
+</form>
 <form class="" action="/purge" method="get">
   <button type="submit" name="button">PURGE</button>
 </form>
